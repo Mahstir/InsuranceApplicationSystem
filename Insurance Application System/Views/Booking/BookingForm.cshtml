@@ -1,0 +1,58 @@
+﻿@model Insurance_Application_System.Models.ViewModel.BookingViewModel
+
+@{
+    ViewBag.Title = "BookingForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>BookingForm</h2>
+
+
+<p class="alert alert-info">
+    You are about to register for a new @ViewBag.Test Package <br />
+    @if (!User.Identity.IsAuthenticated)
+    {
+    <p>Please Click this link below if you are a subscribed member </p>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "my-class" })
+}
+
+    <hr />
+    <hr />
+    @using (Html.BeginForm("Save", "Booking"))
+    {
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.NonMember.FirstName)
+            @Html.TextBoxFor(m => m.NonMember.FirstName, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.NonMember.LastName)
+            @Html.TextBoxFor(m => m.NonMember.LastName, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.NonMember.EmailAddress)
+            @Html.TextBoxFor(m => m.NonMember.EmailAddress, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.NonMember.PhoneNumber)
+            @Html.TextBoxFor(m => m.NonMember.PhoneNumber, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.NonMember.StandardAdminFee)
+            @Html.TextBoxFor(m => m.NonMember.StandardAdminFee, new { @class = "form-control" })
+        </div>
+
+        <input data-val="true" data-val-number="The field InsurancePackageId must be a number." id="Booking_InsurancePackageId" name="Booking.InsurancePackageId" type="hidden" value=@ViewContext.RouteData.Values["id"] />
+
+
+        <button type="submit" class="btn btn-primary">Save</button>
+    }
+
+
+    @section scripts
+    {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

@@ -1,0 +1,79 @@
+﻿@model Insurance_Application_System.Models.ViewModel.BookingViewModel
+
+@{
+    ViewBag.Title = "BookingForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>BookingForm</h2>
+
+<hr />
+@using (Html.BeginForm("Save", "Bookings"))
+{
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Booking.Member.FirstName)
+        @Html.TextBoxFor(m => m.Booking.Member.FirstName, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Booking.Member.LastName)
+        @Html.TextBoxFor(m => m.Booking.Member.LastName, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Booking.InsurancePackage.Name)
+        @Html.TextBoxFor(m => m.Booking.InsurancePackage.Name, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+
+    @*<div class="form-group">
+            @Html.LabelFor(m => m.Booking.InsurancePackageId)
+            @Html.DropDownListFor(m => m.InsurancePackages, new SelectList(Model.InsurancePackages, "Id", "Name"), "Select InsurancePackage", new { @class = "form-control" })
+        </div>*@
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Booking.Owner)
+        @Html.TextBoxFor(m => m.Booking.Owner, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Booking.Status)
+        @Html.TextBoxFor(m => m.Booking.Status, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Booking.Payout)
+        @Html.TextBoxFor(m => m.Booking.Payout, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+
+    @*<div class="form-group">
+            @Html.LabelFor(m => m.NonMember.LastName)
+            @Html.TextBoxFor(m => m.NonMember.LastName, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.NonMember.EmailAddress)
+            @Html.TextBoxFor(m => m.NonMember.EmailAddress, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.NonMember.PhoneNumber)
+            @Html.TextBoxFor(m => m.NonMember.PhoneNumber, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.NonMember.StandardAdminFee)
+            @Html.TextBoxFor(m => m.NonMember.StandardAdminFee, new { @class = "form-control" })
+        </div>
+
+        <input data-val="true" data-val-number="The field InsurancePackageId must be a number." id="Booking_InsurancePackageId" name="Booking.InsurancePackageId" type="hidden" value=@ViewContext.RouteData.Values["id"] />*@
+
+
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+
+
+@section scripts
+    {
+    @Scripts.Render("~/bundles/jqueryval")
+}

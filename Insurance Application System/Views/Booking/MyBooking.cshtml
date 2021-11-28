@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Insurance_Application_System.Models.Booking>
+@{
+    ViewBag.Title = "MyBooking";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>MyBooking</h2>
+
+<table id="books" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Annual Fee</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#books").DataTable({
+                ajax: {
+                    url: "/api/mybookings",
+                    dataSrc: ""
+                },
+                columns: [
+
+                    {
+                        data: "insurancePackage.name"
+                    },
+                    {
+                        data: "status"
+                    }
+                ]
+            });
+        });
+    </script>
+}

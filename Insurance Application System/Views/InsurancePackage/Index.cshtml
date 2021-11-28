@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "InsurancePackageListView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Insurance Packages</h2>
+
+<table id="packages" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Availability</th>
+            <th>Fee</th>
+            <th>Duration</th>
+            <th>Asset</th>
+            <th>Place Booking</th>
+
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#packages").DataTable({
+                ajax: {
+                    url: "/api/insurancepackages",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name",
+                        render: function (data, type, package) {
+                            return "<a href='/insurancepackages/edit/" + package.id + " '>" + package.name + "</a>";
+                        }
+                    },
+                    {
+                        data: "availability"
+                    },
+                    {
+                        data: "fee",
+                        render: function (data) {
+                            return data+"£";
+                        }
+                    },
+                    {
+                        data: "duration"
+                    },
+                    {
+                        data: "asset"
+                    },
+                    {
+                        data: "id",
+                        render: function (data, type, book) {
+                            return "<a href='/Booking/BookingForm/" + book.id + " '>" + "Book " + "</a>";
+                        }
+                    }
+
+                ]
+            });
+        });
+    </script>
+}

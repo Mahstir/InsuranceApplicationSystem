@@ -1,0 +1,52 @@
+﻿@model Insurance_Application_System.Models.ViewModel.BookingViewModel
+
+@{
+    ViewBag.Title = "BookingForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Subscribed-Member Booking Form</h2>
+
+
+<hr />
+<p class="alert alert-info">
+    You are about to register for a new @ViewBag.Test Package <br />
+    @if (!User.Identity.IsAuthenticated)
+    {
+    <p>Please Click this link below if you are a subscribed member </p>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "my-class" })
+}
+
+    <hr />
+    @using (Html.BeginForm("Save", "Booking"))
+    {
+       
+        if (!User.Identity.IsAuthenticated)
+        {
+            <div class="form-group">
+                @Html.LabelFor(m => m.StandardAdminFee)
+                @Html.TextBoxFor(m => m.StandardAdminFee, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+        }
+
+        <div class="form-group">
+            <label>Family</label>
+            @Html.RadioButtonFor(m => m.Booking.Owner, "Family")
+            <label>Individual</label>
+            @Html.RadioButtonFor(m => m.Booking.Owner, "Individual")
+        </div>
+
+
+
+
+
+        <input data-val="true" data-val-number="The field InsurancePackageId must be a number." id="Booking_InsurancePackageId" name="Booking.InsurancePackageId" type="hidden" value=@ViewContext.RouteData.Values["id"] />
+
+
+        <button type="submit" class="btn btn-primary">Save</button>
+    }
+
+
+    @section scripts
+    {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
