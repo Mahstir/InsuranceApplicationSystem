@@ -22,8 +22,16 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Insurance Packages", "Index", "InsurancePackage")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("List My Bookings", "OneBooking", "Booking")</li>
+
+                    }
+                    @if (User.IsInRole("Financial Advisor"))
+                    {
+                        <li>@Html.ActionLink("See All Bookings", "Allbookings", "Booking")</li>
+
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

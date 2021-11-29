@@ -41,6 +41,8 @@ namespace Insurance_Application_System.Controllers.API
         }
      
         // GET: Booking
+        
+        [Authorize(Roles = "Financial Advisor")]
         public ActionResult Index()
         {
             return View();
@@ -73,25 +75,28 @@ namespace Insurance_Application_System.Controllers.API
 
         public ActionResult Save(Booking booking)
         {
+            var book = _context.Bookings.Include(c => c.InsurancePackage).Include(c => c.Member).SingleOrDefault(c => c.Id == booking.Id);
+            var package = _context.InsurancePackages.SingleOrDefault(c => c.Id == booking.InsurancePackageId);
 
             var userId = TempData["Newmessage"] as string;
 
           
             booking.ApplicationUserId = userId;
 
+         
 
             if (booking.Id == 0 ) 
             {
-                
-                _context.Bookings.Add(booking);
+                booking.Status = "Active";
 
+             
+                _context.Bookings.Add(booking);
+                package.Availability--;
             }
             else
             {
-
                 var trainingInDb = _context.Bookings.Single(m => m.Id == booking.Id);
                 TryUpdateModel(trainingInDb);
-
             }
 
             _context.SaveChanges();
@@ -112,7 +117,6 @@ namespace Insurance_Application_System.Controllers.API
             var currentUser = User.Identity.GetUserId();
             var myBookings = _context.Bookings.Include(c => c.InsurancePackage).Include(c => c.Member).Where(c => c.ApplicationUserId == currentUser).ToList();
 
-
             return View(myBookings);
 
         }
@@ -128,6 +132,15 @@ namespace Insurance_Application_System.Controllers.API
             };
 
             return View(viewModel);
+        }
+
+        public ActionResult AllBookings()
+        {
+
+            var allBookings = _context.Bookings.Include(c => c.InsurancePackage).Include(c => c.Member).ToList();
+
+            return View(allBookings);
+
         }
     }
 }

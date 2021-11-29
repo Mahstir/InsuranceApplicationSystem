@@ -21,13 +21,15 @@ namespace Insurance_Application_System.Controllers.API
             _context = new ApplicationDbContext();
         }
 
-        //public IEnumerable<Booking> GetBookings()
-        //{
+        [HttpGet]
+        public IEnumerable<Booking> GetBookings()
+        {
 
-        //    return _context.Bookings.Include(c => c.InsurancePackage).Include(c => c.Member).ToList();
+            return _context.Bookings.Include(c => c.InsurancePackage).Include(c => c.Member).ToList();
 
-        //}
+        }
 
+        [HttpPost]
         public IHttpActionResult NewBooking(Booking booking)
         {
             var member = _context.Users.SingleOrDefault(c => c.Id == booking.Member.Id);

@@ -8,7 +8,7 @@ namespace Insurance_Application_System.Models
     public class Booking
     {
         public int Id { get; set; }
-        public ApplicationUser Member { get; set; }
+        public ApplicationUser Member { get; set; } 
 
         public string ApplicationUserId { get; set; }
 

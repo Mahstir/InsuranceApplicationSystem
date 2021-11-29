@@ -192,7 +192,7 @@
     <Compile Include="Controllers\API\MyBookingsController.cs" />
     <Compile Include="Controllers\API\NonMemberBookingsController.cs" />
     <Compile Include="Controllers\API\NonMembersController.cs" />
-    <Compile Include="Controllers\BookingsController.cs" />
+    <Compile Include="Controllers\BookingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InsurancePackageController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -242,6 +242,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-lumen.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -478,6 +479,7 @@
     <Content Include="Views\Booking\OneBooking.cshtml" />
     <Content Include="Views\Booking\NonMemberBookings.cshtml" />
     <Content Include="Views\Booking\Edit.cshtml" />
+    <Content Include="Views\Booking\AllBookings.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

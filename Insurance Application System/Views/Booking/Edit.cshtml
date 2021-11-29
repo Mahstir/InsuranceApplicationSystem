@@ -8,7 +8,7 @@
 <h2>BookingForm</h2>
 
 <hr />
-@using (Html.BeginForm("Save", "Bookings"))
+@using (Html.BeginForm("Save", "Booking"))
 {
 
     <div class="form-group">
@@ -36,15 +36,36 @@
         @Html.TextBoxFor(m => m.Booking.Owner, new { @class = "form-control", @readonly = "readonly" })
     </div>
 
-    <div class="form-group">
-        @Html.LabelFor(m => m.Booking.Status)
-        @Html.TextBoxFor(m => m.Booking.Status, new { @class = "form-control", @readonly = "readonly" })
-    </div>
+    if (User.IsInRole("Financial Advisor"))
+    {
+        <div class="form-group">
+            @Html.LabelFor(m => m.Booking.Status)
+            @Html.TextBoxFor(m => m.Booking.Status, new { @class = "form-control" })
+        </div>
+    }
+    else
+    {
+        <div class="form-group">
+            @Html.LabelFor(m => m.Booking.Status)
+            @Html.TextBoxFor(m => m.Booking.Status, new { @class = "form-control", @readonly = "readonly" })
+        </div>
+    }
 
-    <div class="form-group">
-        @Html.LabelFor(m => m.Booking.Payout)
-        @Html.TextBoxFor(m => m.Booking.Payout, new { @class = "form-control", @readonly = "readonly" })
-    </div>
+    if (User.IsInRole("Financial Advisor"))
+    {
+        <div class="form-group">
+            @Html.LabelFor(m => m.Booking.Payout)
+            @Html.TextBoxFor(m => m.Booking.Payout, new { @class = "form-control" })
+        </div>
+    }
+    else
+    {
+        <div class="form-group">
+            @Html.LabelFor(m => m.Booking.Payout)
+            @Html.TextBoxFor(m => m.Booking.Payout, new { @class = "form-control", @readonly = "readonly" })
+        </div>
+    }
+
 
     @*<div class="form-group">
             @Html.LabelFor(m => m.NonMember.LastName)
