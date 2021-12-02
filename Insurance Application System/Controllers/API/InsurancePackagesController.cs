@@ -9,7 +9,7 @@ using System.Data.Entity;
 
 namespace Insurance_Application_System.Controllers.API
 {
-    public class InsurancePackagesController : ApiController
+    public class InsurancePackagesController : ApiController, IInsurancePackagesController
     {
         private ApplicationDbContext _context;
 
@@ -50,6 +50,7 @@ namespace Insurance_Application_System.Controllers.API
         [HttpPut]
         public void UpdateInsurancePackage(int id, InsurancePackage insurancePackage)
         {
+          
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
@@ -81,5 +82,18 @@ namespace Insurance_Application_System.Controllers.API
 
         }
 
+    }
+
+    public interface IInsurancePackagesController
+    {
+        InsurancePackage GetInsurancePackage(int id);
+
+        void DeleteInsurancePackage(int id);
+
+        void UpdateInsurancePackage(int id, InsurancePackage insurancePackage);
+
+        IHttpActionResult CreateInsurancePackage(InsurancePackage insurancePackage);
+
+        IEnumerable<InsurancePackage> GetInsurancePackages();
     }
 }

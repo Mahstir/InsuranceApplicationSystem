@@ -18,11 +18,17 @@ namespace Insurance_Application_System.Controllers
             _context = new ApplicationDbContext();
         }
 
-        public ActionResult Index()
+     public ActionResult Index()
         {
-            var message = TempData["message"] as string;
-            TempData["Newmessage"] = message;
             return View();
         }
+
+    }
+
+    public interface IInsurancePackageController
+    {
+        ActionResult Index();
+
+
     }
 }

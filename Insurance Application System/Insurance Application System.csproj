@@ -232,6 +232,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Booking.cs" />
+    <Compile Include="Models\BookingFactory.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\InsurancePackage.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
